@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cote.dao.CustomUserMapper">
+    <resultMap id="BaseResultMap" type="cn.cote.pojo.User" >
+        <id column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_password" property="userPassWord" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--<select id="findPassWordByName" parameterType="cn.cote.pojo.User" resultMap="BaseResultMap">-->
+       <!--SELECT user_password from t_user-->
+    <!--</select>-->
+    <select id="findPassWordByName" parameterType="cn.cote.pojo.User" resultType="String">
+        SELECT user_password from t_user WHERE user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+    <!--<select id="queryUser" resultType="cn.cote.pojo.User">-->
+    <!--SELECT *  FROM user-->
+    <!--</select>-->
+</mapper>

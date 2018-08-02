@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        main{
+            /*background: red;*/
+        }
+        article{
+            background: skyblue;
+            width: 500px;
+            height: 200px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+<!--<form action="/toLogin" method="post">-->
+    <!--user:<input type="text" name="userName"><br>-->
+    <!--pass:<input type="text" name="passWord"><br>-->
+    <!--<input type="submit" value="submit">-->
+<!--</form>-->
+<main>
+    <article>
+        <p>user:</p><input type="text" name="userName" id="userName"><br>
+        <p>pass:</p><input type="text" name="passWord" id="passWord"><br><br>
+        <button id="submit">登陆</button><br>
+		<a href="file:///C:/Users/xqtdn/Desktop/js/main.html">123</a>
+        <script>
+            $(function () {
+                $("#submit").click(function () {
+                    var data={"userName":$("#userName").val(),"passWord":$("#passWord").val()};
+                    console.log(data);
+                   $.post("http://127.0.0.1:8080/login",data,function (data) {
+                       console.log("服务器传回的data:");
+                       console.log(data);
+                       if(data.code == 1){
+                           $.cookie("token",data.data);
+                           window.location.href="js/main1.html"
+                       }else{
+                           console.log("error");
+                       }
+                   })
+                });
+            })
+        </script>
+    </article>
+</main>
+</body>
+</html>
